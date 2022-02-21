@@ -14,26 +14,30 @@ public class ToDoController {
     @Autowired
     private ToDoService toDoService;
 
+    @CrossOrigin(origins = "*")
     @GetMapping
     public List<Item> findAll(){
         return toDoService.findAll();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public Item findById(@PathVariable Long id){
         return toDoService.findById(id);
     }
-
+    @CrossOrigin(origins = "*")
     @PostMapping
     public Item create(@RequestBody Item item){
         return toDoService.save(item);
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping("/{id}")
     public Item update(@RequestBody Item item){
         return toDoService.save(item);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id){
         toDoService.deleteById(id);
