@@ -9,6 +9,8 @@ sudo mysql -e "GRANT ALL PRIVILEGES ON todo.* TO 'creator'@'localhost';"
 
 cd frontend/todo
 
+sudo npm install axios
+
 sudo wget https://cdn.rawgit.com/abdennour/miscs.sh/e0aac343/killport
 
 sudo sh killport 8080
