@@ -1,20 +1,19 @@
 <template>
-  <div>{{ info }}
-    <TodoItem></TodoItem>
+  <div>
+    <TodoItemContainer></TodoItemContainer>
   </div>
 
 </template>
 
 <script>
 
-import TodoItem from "./components/TodoItem.vue";
-
+import TodoItemContainer from "./components/TodoItemContainer.vue"
 
 
 export default {
   name: 'App', 
   components: {
-    TodoItem
+    TodoItemContainer
   }
 }
 </script>
