@@ -10,11 +10,12 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <form class="form-inline d-flex">
+        <form class="form-inline d-flex" @submit.prevent="addTask">
           <input
             type="text"
             class="form-control w-25 input-sm"
             placeholder="New Task"
+            v-model="name"
           />
           <button type="submit" class="btn btn-primary mx-3">Add</button>
         </form>
@@ -32,33 +33,33 @@ export default {
   components: {
     TodoItem,
   },
-  mounted() {
-    const instance = axios.create({
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      baseURL: "http://localhost:8080",
-    });
-
-    instance
-      .post("/api/todo", { id: 1, name: "hacer tarea", completed: true })
-      .then((response) => {
-        this.items.push({
-          id: response.data.it,
-          name: response.data.name,
-          checked: response.data.completed,
-        });
-      })
-      .catch((error) => console.log(error));
-  },
   updated() {
     console.log(this.info.row);
+  },
+  methods: {
+    addTask() {
+      this.instance
+        .post("/api/todo", {name: this.name, completed: false})
+        .then((response) => {
+          this.items.push({
+            id: response.data.id,
+            name: response.data.name,
+            checked: response.data.completed,
+          });
+        })
+        .catch((error) => console.log(error));
+    },
   },
   data() {
     return {
       info: null,
-      items: [
-      ],
+      items: [],
+      instance: axios.create({
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+        baseURL: "http://localhost:8080",
+      }),
     };
   },
 };
