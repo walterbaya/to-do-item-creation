@@ -1,37 +1,21 @@
 <template>
-  <div>{{ info }}</div>
+  <div>{{ info }}
+    <TodoItem></TodoItem>
+  </div>
+
 </template>
 
 <script>
-import axios from 'axios';
 
+import TodoItem from "./components/TodoItem.vue";
 
 
 
 export default {
-  name: 'App',
-  mounted() {
-    const instance = axios.create({
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-      baseURL: 'http://localhost:8080'
-    });
-    
-    instance.post('/humanPlay', { 'row': 1, 'col': 1 })
-      .then(response => (this.info = response.data))
-      .catch(error => console.log(error))
-  }, 
-  updated(){
-    console.log(this.info.row);
-  },
-  data() {
-    return {
-      info: null,
-      circle: "circle",
-      cross: "cross"
-    }
-  },
+  name: 'App', 
+  components: {
+    TodoItem
+  }
 }
 </script>
 
