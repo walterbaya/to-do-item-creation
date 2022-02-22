@@ -72,6 +72,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.0.0-SNAPSHOT</version>
                 <configuration>
                     <excludes>
                         <exclude>
@@ -83,6 +84,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
                 <configuration>
                     <filesets>
                         <fileset>
@@ -96,6 +98,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>copy Vue.js frontend content</id>
@@ -108,6 +111,7 @@
                             <overwrite>true</overwrite>
                             <resources>
                                 <resource>
+                                    <!--suppress UnresolvedMavenProperty -->
                                     <directory>${project.parent.basedir}/frontend/target/dist</directory>
                                     <includes>
                                         <include>static/</include>
