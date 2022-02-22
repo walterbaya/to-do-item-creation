@@ -1,4 +1,4 @@
-# to-do-item-creation
+﻿# to-do-item-creation
 Implementation of a simple web application that allows you to create to-do items and folders to group them.
 
 # required versions.
@@ -17,6 +17,6 @@ bash ./run.sh
 sh ./run.sh
 
 # Close project correctly:
-# In terminal: This would close tomcat embedded server after springboot application were closed.
+## In terminal: This would close tomcat embedded server after springboot application were closed.
 
 ctrl + c
