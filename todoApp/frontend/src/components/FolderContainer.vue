@@ -2,15 +2,15 @@
   <div class="container">
     <div class="row mt-5">
       <div class="col-12">
-        <h1 class="h1">Folders</h1>
+        <h1 class="h1 mb-5">Folders</h1>
       </div>
     </div>
     <div class="row my-1" v-for="folder in folders" v-bind:key="folder.id">
       <FolderComponent v-bind:folder="folder"></FolderComponent>
     </div>
-    <div class="row">
+    <div class="row mt-5">
       <div class="col-12">
-        <form class="form-inline d-flex" @submit.prevent="addTask">
+        <form class="form-inline d-flex" @submit.prevent="addFolder">
           <input
             type="text"
             class="form-control w-75 input-sm"
@@ -31,21 +31,34 @@ import FolderComponent from "./FolderComponent.vue";
 export default {
   name: "FolderContainer",
   components: {
-    FolderComponent
+    FolderComponent,
   },
-  updated() {
-    console.log(this.info.row);
+  beforeMount() {
+    this.getAllFolders();
   },
   methods: {
-    addTask() {
+    addFolder() {
       this.instance
-        .post("/api/todo", {name: this.name, completed: false})
+        .post("/api/todo/folders", { name: this.folderName })
         .then((response) => {
-          this.items.push({
+          this.info = response.data
+          this.folders.push({
             id: response.data.id,
             name: response.data.name,
-            checked: response.data.completed,
+            items: response.data.items,
           });
+        })
+        .catch((error) => console.log(error));
+    },
+    getAllFolders() {
+      this.instance
+        .get("/api/todo/folders")
+        .then((response) => {
+          if (this.folders != null) {
+            this.folders = this.folders.concat(response.data);
+          } else {
+            this.folders = response.data;
+          }
         })
         .catch((error) => console.log(error));
     },
@@ -53,7 +66,7 @@ export default {
   data() {
     return {
       info: null,
-      items: [],
+      folders: [],
       instance: axios.create({
         headers: {
           "Access-Control-Allow-Origin": "*",

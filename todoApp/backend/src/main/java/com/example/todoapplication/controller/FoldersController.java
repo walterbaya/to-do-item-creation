@@ -16,7 +16,6 @@ public class FoldersController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/folders")
-
     public List<Folder> findAll(){
         return foldersService.findAll();
     }
@@ -39,7 +38,7 @@ public class FoldersController {
     }
 
     @CrossOrigin(origins = "*")
-    @DeleteMapping("/folders/{id}")
+    @DeleteMapping("/folders")
     public void deleteById(@PathVariable Integer id){
         foldersService.deleteById(id);
     }

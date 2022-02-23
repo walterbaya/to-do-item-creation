@@ -1,43 +1,43 @@
 <template>
   <div class="col-12">
-    <form class="form-inline">
-      <div class="custom-control custom-checkbox my-1 mr-sm-2">
-        <input
-          type="checkbox"
-          class="custom-control-input"
-          v-bind:checked="item.checked"
-        />
-        <label class="custom-control-label mx-3" for="customControlInline">{{
-          item.name
+    <form class="form flex-row">
+      <div class="row custom-control custom-checkbox my-1 mr-sm-2">
+        <label class="col-12 col-md-8 custom-control-label border-dark  text-dark" for="customControlInline">- {{
+          folder.name
         }}</label>
-        <router-link to="/TodoItemEditor" class="btn btn-outline-primary btn-sm my-1">
-          Edit
+  
+        <router-link
+          to="/"
+          class=" col-12 col-md-2 align-text-left  py-1"
+        >
+          View Items
         </router-link>
+        <button
+          type="submit"
+          v-on:click.stop.prevent="removeFolder()"
+          class="col-12  col-md-2  align-text-left btn btn-link d-flex flex-start"
+        >
+          Remove
+        </button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "FolderComponent",
   props: {
-    item: Object
+    folder: Object,
   },
   methods: {
-    editTask(){
+    removeFolder() {
       this.instance
-        .post("/api/todo", {name: this.name, completed: false})
-        .then((response) => {
-          this.items.push({
-            id: response.data.id,
-            name: response.data.name,
-            checked: response.data.completed,
-          });
-        })
+        .delete("/api/todo/folders", { id: this.id })
+        .then()
         .catch((error) => console.log(error));
+      this.$router.push("/items");
     },
-  }
+  },
 };
 </script>

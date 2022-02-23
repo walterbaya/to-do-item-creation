@@ -14,14 +14,6 @@ import static jakarta.persistence.GenerationType.AUTO;
 @jakarta.persistence.Table(name= "folder")
 public class Folder implements Serializable {
 
-    public Folder() {
-
-    }
-
-    public Folder(String name, Boolean completed){
-        this.name = name;
-    }
-
     @jakarta.persistence.GeneratedValue(strategy = AUTO)
     @jakarta.persistence.Id
     @jakarta.persistence.Column(name="folder_id")
@@ -32,6 +24,14 @@ public class Folder implements Serializable {
     @jakarta.persistence.OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     @jakarta.persistence.JoinColumn(name="folder_id")
     private List<Item> items;
+
+    public Folder() {
+
+    }
+
+    public Folder(String name){
+        this.name = name;
+    }
 
     public void setId(Integer id) {
         this.id = id;
