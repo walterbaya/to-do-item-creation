@@ -33,7 +33,7 @@ export default {
   components: {
     TodoItem,
   },
-  updated() {
+  mounted() {
     this.getAllItems();
   },
   methods: {
