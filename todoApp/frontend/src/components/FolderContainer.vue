@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row my-1" v-for="folder in folders" v-bind:key="folder.id">
-      <Folder v-bind:folder="folder"></Folder>
+      <FolderComponent v-bind:folder="folder"></FolderComponent>
     </div>
     <div class="row">
       <div class="col-12">
@@ -26,12 +26,12 @@
 
 <script>
 import axios from "axios";
-import Folder from "./Folder.vue";
+import FolderComponent from "./FolderComponent.vue";
 
 export default {
   name: "FolderContainer",
   components: {
-    Folder,
+    FolderComponent
   },
   updated() {
     console.log(this.info.row);

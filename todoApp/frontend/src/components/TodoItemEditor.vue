@@ -24,13 +24,9 @@
 
 <script>
 import axios from "axios";
-import TodoItem from "./TodoItem.vue";
 
 export default {
   name: "TodoItemEditor",
-  components: {
-    TodoItem,
-  },
   methods: {
     updateTask() {
       this.instance
