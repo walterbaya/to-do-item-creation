@@ -10,6 +10,8 @@ sudo mysql -e "USE todo; GRANT ALL PRIVILEGES ON todo.* TO 'creator'@'localhost'
 
 #sudo npm install axios
 
+#sudo vue add router
+
 #sudo wget https://cdn.rawgit.com/abdennour/miscs.sh/e0aac343/killport
 
 #sudo sh killport 8081
