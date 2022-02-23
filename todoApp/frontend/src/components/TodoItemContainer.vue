@@ -10,7 +10,7 @@
     </div>
     <div class="row mt-4">
       <div class="col-12">
-        <form class="form-inline d-flex" @submit.prevent="addTask">
+        <form class="form-inline d-flex mb-5" @submit.prevent="addTask">
           <input
             type="text"
             class="form-control w-25 input-sm"
