@@ -7,17 +7,17 @@
     </div>
     <div class="row mt-3">
       <div class="col-12">
-        <form class="form-inline d-flex" action="items">
+        <form class="d-flex flex-column flex-md-row" action="items">
           <input
             type="text"
-            class="form-control w-25 input-sm"
+            class="form-control w-50 input-sm"
             placeholder="New Task"
             v-model="name"
           />
-          <button type="submit" v-on:click.stop.prevent="updateTask()" class="btn btn-outline-primary mx-3">
+          <button type="submit" v-on:click.stop.prevent="updateTask()" class="btn btn-outline-primary mx-md-3 mt-3 mt-md-0 w-25">
             Save
           </button>
-          <router-link to="/items" class="btn btn-outline-primary mx-3"
+          <router-link to="/items" class="btn btn-outline-primary mx-md-3 mt-3 mt-md-0 w-25"
             >Cancel</router-link
           >
         </form>

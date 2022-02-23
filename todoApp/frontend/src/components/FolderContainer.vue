@@ -13,7 +13,7 @@
         <form class="form-inline d-flex" @submit.prevent="addTask">
           <input
             type="text"
-            class="form-control w-25 input-sm"
+            class="form-control w-75 input-sm"
             placeholder="New Folder"
             v-model="folderName"
           />
