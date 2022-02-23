@@ -1,20 +1,9 @@
 <template>
-  <div>
-    <TodoItemContainer></TodoItemContainer>
-  </div>
-
+  <router-view> </router-view>
 </template>
 
 <script>
-
-import TodoItemContainer from "./components/TodoItemContainer.vue"
-
-
 export default {
-  name: 'App', 
-  components: {
-    TodoItemContainer
-  }
+  name: 'App',
 }
 </script>
-
