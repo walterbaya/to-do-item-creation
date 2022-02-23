@@ -1,5 +1,8 @@
 package com.example.todoapplication.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence. *;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -12,7 +15,7 @@ import static jakarta.persistence.GenerationType.AUTO;
 @jakarta.persistence.Entity
 @Data
 @jakarta.persistence.Table(name= "folder")
-public class Folder implements Serializable {
+public class Folder {
 
     private Integer id;
 
@@ -26,6 +29,7 @@ public class Folder implements Serializable {
 
     @jakarta.persistence.OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     @jakarta.persistence.JoinColumn(name="folder_id")
+    @JsonManagedReference
     public List<Item> getItems() {
         return items;
     }

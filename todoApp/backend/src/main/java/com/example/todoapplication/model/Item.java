@@ -1,5 +1,7 @@
 package com.example.todoapplication.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence. *;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -9,7 +11,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name= "item")
-public class Item implements Serializable {
+public class Item {
 
     public Item() {
 
@@ -41,6 +43,7 @@ public class Item implements Serializable {
 
     @jakarta.persistence.ManyToOne
     @jakarta.persistence.JoinColumn(name="folder_id")
+    @JsonBackReference
     public Folder getFolder() {
         return folder;
     }

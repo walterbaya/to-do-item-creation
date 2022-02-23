@@ -22,6 +22,7 @@
       </div>
     </div>
     {{ this.folder }}
+    {{ this.items }}
   </div>
 </template>
 
@@ -39,31 +40,35 @@ export default {
   },
   mounted() {
     this.getAllItems();
+    this.getFolder();
   },
   methods: {
     addTask() {
-      //Get the Folder first
+      //Add task
       this.instance
-        .get("/api/todo/folders/" + this.folderId)
-        .then((response) => (this.folder = response.data))
-        .catch((error) => console.log(error));
-      
-      //Add task 
-      this.instance
-        .post("/api/todo", { name: this.name, completed: false, folder: this.folder })
+        .post("/api/todo", {
+          name: this.name,
+          completed: false,
+          folder: this.folder,
+        })
         .then((response) => {
-          console.log(this.folder)
-          this.items.push({
-            id: response.data.id,
-            name: response.data.name,
-            checked: response.data.completed,
-          });
+          if(this.items == undefined){
+            this.items = [response.data];
+          }
+          else{
+            this.items.push(response.data);
+          }
+          
         })
         .catch((error) => console.log(error));
+
+      
       //update items in folder
-      this.instance.put("/api/todo/folders/" + this.folderId, {
-        items: this.items,
-      });
+      this.instance
+        .put("/api/todo/folders/" + this.folder.id, {
+          items: this.items,
+        })
+        .then();
     },
     getAllItems() {
       this.instance
@@ -71,6 +76,12 @@ export default {
         .then((response) => {
           this.items = response.data.items;
         })
+        .catch((error) => console.log(error));
+    },
+    getFolder() {
+      this.instance
+        .get("/api/todo/folders/" + this.folderId)
+        .then((response) => (this.folder = response.data))
         .catch((error) => console.log(error));
     },
   },
