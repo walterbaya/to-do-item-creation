@@ -1,16 +1,27 @@
 package com.example.todoapplication.model;
 
 import jakarta.persistence. *;
-import lombok.Data;
-
 import org.springframework.data.annotation.Id;
 
-@Data
+import java.io.Serializable;
+
+import static jakarta.persistence.GenerationType.*;
+
 @Entity
 @Table(name= "item")
-public class Item {
+public class Item implements Serializable {
 
+    public Item() {
+
+    }
+
+    public Item(String name, Boolean completed){
+        this.name = name;
+        this.completed = completed;
+    }
     @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private String name;

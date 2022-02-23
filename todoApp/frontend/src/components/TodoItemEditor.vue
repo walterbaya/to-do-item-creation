@@ -2,11 +2,8 @@
   <div class="container">
     <div class="row mt-5">
       <div class="col-12">
-        <h1 class="h1">Todo List</h1>
+        <h1 class="h1">Editing Task {{item.name}}</h1>
       </div>
-    </div>
-    <div class="row my-1" v-for="item in items" v-bind:key="item.id">
-      <TodoItem v-bind:item="item"></TodoItem>
     </div>
     <div class="row">
       <div class="col-12">
@@ -17,7 +14,8 @@
             placeholder="New Task"
             v-model="name"
           />
-          <button type="submit" class="btn btn-primary mx-3">Add</button>
+          <button type="submit" class="btn btn-primary mx-3">Save</button>
+          <router-link to="/TodoItemContainer" type="submit" class="btn btn-primary mx-3">Cancel</router-link>
         </form>
       </div>
     </div>
@@ -29,7 +27,7 @@ import axios from "axios";
 import TodoItem from "./TodoItem.vue";
 
 export default {
-  name: "TodoItemContainer",
+  name: "TodoItemEditor",
   components: {
     TodoItem,
   },
@@ -37,9 +35,9 @@ export default {
     console.log(this.info.row);
   },
   methods: {
-    addTask() {
+    updateTask() {
       this.instance
-        .post("/api/todo", {name: this.name, completed: false})
+        .put("/api/todo", {name: this.name, completed: false})
         .then((response) => {
           this.items.push({
             id: response.data.id,

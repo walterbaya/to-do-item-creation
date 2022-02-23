@@ -2,11 +2,11 @@
   <div class="container">
     <div class="row mt-5">
       <div class="col-12">
-        <h1 class="h1">Todo List</h1>
+        <h1 class="h1">Folders</h1>
       </div>
     </div>
-    <div class="row my-1" v-for="item in items" v-bind:key="item.id">
-      <TodoItem v-bind:item="item"></TodoItem>
+    <div class="row my-1" v-for="folder in folders" v-bind:key="folder.id">
+      <Folder v-bind:folder="folder"></Folder>
     </div>
     <div class="row">
       <div class="col-12">
@@ -29,9 +29,9 @@ import axios from "axios";
 import TodoItem from "./TodoItem.vue";
 
 export default {
-  name: "TodoItemContainer",
+  name: "FolderContainer",
   components: {
-    TodoItem,
+    Folder,
   },
   updated() {
     console.log(this.info.row);

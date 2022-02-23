@@ -4,7 +4,7 @@ Implementation of a simple web application that allows you to create to-do items
 # required versions.
 
 MySql 8.0.27 (Server)
-java 17.0.1  
+java 1.8   (due to server stability) 
 nodejs 12.21.0
 vuecli  5.0.1
 

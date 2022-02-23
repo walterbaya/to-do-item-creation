@@ -5,14 +5,12 @@
         <input
           type="checkbox"
           class="custom-control-input"
-          v-bind:checked="item.checked"
         />
         <label class="custom-control-label mx-3" for="customControlInline">{{
           item.name
         }}</label>
-        <router-link to="/TodoItemEditor" class="btn btn-outline-primary btn-sm my-1">
-          Edit
-        </router-link>
+        <router-link to="/TodoItemContainer">View Items</router-link>
+        <Button>Remove</Button>
       </div>
     </form>
   </div>
@@ -21,7 +19,7 @@
 <script>
 
 export default {
-  name: "TodoItem",
+  name: "Folder",
   props: {
     item: Object
   },

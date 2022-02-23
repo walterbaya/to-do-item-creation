@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class ToDoService {
 
     //Provide typical CRUD operations, Create, Delete, Read and UPDATE.
     @Autowired
     private ToDoRepository toDoRepository;
+
 
     public List<Item> findAll(){
         return (List<Item>) toDoRepository.findAll();
