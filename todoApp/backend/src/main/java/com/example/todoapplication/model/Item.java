@@ -1,15 +1,13 @@
 package com.example.todoapplication.model;
 
 import jakarta.persistence. *;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 
-import java.io.Serializable;
-
-import static jakarta.persistence.GenerationType.*;
-
 @Entity
+@Data
 @Table(name= "item")
-public class Item implements Serializable {
+public class Item {
 
     public Item() {
 
@@ -19,21 +17,23 @@ public class Item implements Serializable {
         this.name = name;
         this.completed = completed;
     }
+
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     private String name;
 
     private Boolean completed;
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
+    @Id
     @jakarta.persistence.Id
-    public Long getId() {
+    @jakarta.persistence.GeneratedValue(strategy = GenerationType.AUTO)
+    public Integer getId() {
         return id;
     }
 }

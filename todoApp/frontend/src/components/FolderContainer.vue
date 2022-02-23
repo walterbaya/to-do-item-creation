@@ -14,8 +14,8 @@
           <input
             type="text"
             class="form-control w-25 input-sm"
-            placeholder="New Task"
-            v-model="name"
+            placeholder="New Folder"
+            v-model="folderName"
           />
           <button type="submit" class="btn btn-primary mx-3">Add</button>
         </form>
@@ -26,7 +26,7 @@
 
 <script>
 import axios from "axios";
-import TodoItem from "./TodoItem.vue";
+import Folder from "./Folder.vue";
 
 export default {
   name: "FolderContainer",

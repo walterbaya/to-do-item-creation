@@ -22,7 +22,7 @@ public class ToDoController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
-    public Item findById(@PathVariable Long id){
+    public Item findById(@PathVariable Integer id){
         return toDoService.findById(id);
     }
     @CrossOrigin(origins = "*")
@@ -39,7 +39,7 @@ public class ToDoController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id){
+    public void deleteById(@PathVariable Integer id){
         toDoService.deleteById(id);
     }
 }

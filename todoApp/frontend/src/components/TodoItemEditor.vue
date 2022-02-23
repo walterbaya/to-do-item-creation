@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <form class="form-inline d-flex" @submit.prevent="addTask">
+        <form class="form-inline d-flex" @submit.prevent="updateTask">
           <input
             type="text"
             class="form-control w-25 input-sm"
@@ -31,27 +31,15 @@ export default {
   components: {
     TodoItem,
   },
-  updated() {
-    console.log(this.info.row);
-  },
   methods: {
     updateTask() {
       this.instance
         .put("/api/todo", {name: this.name, completed: false})
-        .then((response) => {
-          this.items.push({
-            id: response.data.id,
-            name: response.data.name,
-            checked: response.data.completed,
-          });
-        })
         .catch((error) => console.log(error));
     },
   },
   data() {
     return {
-      info: null,
-      items: [],
       instance: axios.create({
         headers: {
           "Access-Control-Allow-Origin": "*",

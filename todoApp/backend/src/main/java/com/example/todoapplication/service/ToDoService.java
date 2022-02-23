@@ -21,7 +21,7 @@ public class ToDoService {
         return (List<Item>) toDoRepository.findAll();
     }
 
-    public Item findById(Long id) {
+    public Item findById(Integer id) {
         return toDoRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
@@ -30,7 +30,7 @@ public class ToDoService {
         return toDoRepository.save(item);
     }
 
-    public void deleteById(Long id){
+    public void deleteById(Integer id){
         toDoRepository.deleteById(id);
     }
 }
