@@ -25,6 +25,7 @@ public class ToDoController {
     public Item findById(@PathVariable Integer id){
         return toDoService.findById(id);
     }
+
     @CrossOrigin(origins = "*")
     @PostMapping
     public Item create(@RequestBody Item item){
@@ -32,13 +33,13 @@ public class ToDoController {
     }
 
     @CrossOrigin(origins = "*")
-    @PutMapping("/{id}")
+    @PutMapping
     public Item update(@RequestBody Item item){
         return toDoService.save(item);
     }
 
     @CrossOrigin(origins = "*")
-    @DeleteMapping("/{id}")
+    @DeleteMapping
     public void deleteById(@PathVariable Integer id){
         toDoService.deleteById(id);
     }

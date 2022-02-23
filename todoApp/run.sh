@@ -20,9 +20,9 @@ sudo mysql -e "USE todo; GRANT ALL PRIVILEGES ON todo.* TO 'creator'@'localhost'
 
 #cd ../backend
 
-mvn clean -f pom.xml
-mvn package -f pom.xml
-java -jar backend/target/todoApp.war
+#mvn clean -f pom.xml
+#mvn package -f pom.xml
+#java -jar backend/target/todoApp.war
 
 
 trap 'sudo pkill -9 -f tomcat;'  SIGINT

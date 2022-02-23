@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-    <div class="row mt-5">
+    <div class="row my-4">
       <div class="col-12">
         <h1 class="h1">Todo List</h1>
       </div>
     </div>
-    <div class="row my-1" v-for="item in items" v-bind:key="item.id">
+    <div class="row" v-for="item in items" v-bind:key="item.id">
       <TodoItem v-bind:item="item"></TodoItem>
     </div>
-    <div class="row">
+    <div class="row mt-4">
       <div class="col-12">
         <form class="form-inline d-flex" @submit.prevent="addTask">
           <input
@@ -33,13 +33,13 @@ export default {
   components: {
     TodoItem,
   },
-  updated() {
-    console.log(this.info.row);
+  beforeMount() {
+    this.getAllItems()
   },
   methods: {
     addTask() {
       this.instance
-        .post("/api/todo", {name: this.name, completed: false})
+        .post("/api/todo", { name: this.name, completed: false })
         .then((response) => {
           this.items.push({
             id: response.data.id,
@@ -49,11 +49,27 @@ export default {
         })
         .catch((error) => console.log(error));
     },
+    getAllItems() {
+      this.instance
+        .get("/api/todo")
+        .then((response) => {
+          if(this.items != null){
+            this.items = this.items.concat(response.data);
+          }
+          else{
+            this.items = response.data;
+          }
+          
+        }
+        )
+        .catch((error) => console.log(error));
+    },
   },
   data() {
     return {
       info: null,
-      items: [],
+      items: [
+      ],
       instance: axios.create({
         headers: {
           "Access-Control-Allow-Origin": "*",
