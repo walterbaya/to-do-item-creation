@@ -4,10 +4,12 @@ import jakarta.persistence. *;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
+
 @Entity
 @Data
 @Table(name= "item")
-public class Item {
+public class Item implements Serializable {
 
     public Item() {
 
@@ -26,9 +28,13 @@ public class Item {
 
     private Boolean completed;
 
+    @jakarta.persistence.ManyToOne
+    @jakarta.persistence.JoinColumn(name="folder_id")
+    private Folder folder;
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     @Id
     @jakarta.persistence.Id
