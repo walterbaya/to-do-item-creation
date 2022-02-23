@@ -28,13 +28,22 @@ public class Item implements Serializable {
 
     private Boolean completed;
 
-    @jakarta.persistence.ManyToOne
-    @jakarta.persistence.JoinColumn(name="folder_id")
+
     private Folder folder;
+
     public void setId(Integer id) {
         this.id = id;
     }
 
+    public void setFolder(Folder folder) {
+        this.folder = folder;
+    }
+
+    @jakarta.persistence.ManyToOne
+    @jakarta.persistence.JoinColumn(name="folder_id")
+    public Folder getFolder() {
+        return folder;
+    }
 
     @Id
     @jakarta.persistence.Id

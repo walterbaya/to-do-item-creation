@@ -8,7 +8,15 @@
           >- {{ folder.name }}</label
         >
 
-        <router-link to="/" class="col-12 col-sm-2 align-text-left py-1">
+        <router-link
+          class="col-12 col-sm-2 align-text-left align-self-center py-1"
+          v-bind:to="{
+            name: 'items',
+            params: {
+              folderId: this.folder.id
+            },
+          }"
+        >
           View Items
         </router-link>
         <button
@@ -37,7 +45,7 @@ export default {
         .delete("/api/todo/folders/" + this.folder.id)
         .then()
         .catch((error) => console.log(error))
-        .then(() => (this.$router.go(this.$route.fullPath)))
+        .then(() => this.$router.go(this.$route.fullPath));
     },
   },
   data() {

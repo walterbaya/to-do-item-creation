@@ -21,6 +21,7 @@
         </form>
       </div>
     </div>
+    {{ this.folder }}
   </div>
 </template>
 
@@ -33,14 +34,25 @@ export default {
   components: {
     TodoItem,
   },
+  props: {
+    folderId: Number,
+  },
   mounted() {
     this.getAllItems();
   },
   methods: {
     addTask() {
+      //Get the Folder first
       this.instance
-        .post("/api/todo", { name: this.name, completed: false })
+        .get("/api/todo/folders/" + this.folderId)
+        .then((response) => (this.folder = response.data))
+        .catch((error) => console.log(error));
+      
+      //Add task 
+      this.instance
+        .post("/api/todo", { name: this.name, completed: false, folder: this.folder })
         .then((response) => {
+          console.log(this.folder)
           this.items.push({
             id: response.data.id,
             name: response.data.name,
@@ -48,12 +60,16 @@ export default {
           });
         })
         .catch((error) => console.log(error));
+      //update items in folder
+      this.instance.put("/api/todo/folders/" + this.folderId, {
+        items: this.items,
+      });
     },
     getAllItems() {
       this.instance
-        .get("/api/todo")
+        .get("/api/todo/folders/" + this.folderId)
         .then((response) => {
-          this.items = response.data;
+          this.items = response.data.items;
         })
         .catch((error) => console.log(error));
     },
@@ -62,6 +78,7 @@ export default {
     return {
       info: null,
       items: [],
+      folder: null,
       instance: axios.create({
         headers: {
           "Access-Control-Allow-Origin": "*",

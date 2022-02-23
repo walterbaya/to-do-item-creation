@@ -20,7 +20,8 @@ const routes = [{
     {
         path: '/items',
         name: 'items',
-        component: TodoItemContainer
+        component: TodoItemContainer,
+        props: true
     },
     {
         path: '/folders',
