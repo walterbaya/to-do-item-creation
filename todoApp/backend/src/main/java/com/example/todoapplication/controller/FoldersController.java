@@ -38,7 +38,7 @@ public class FoldersController {
     }
 
     @CrossOrigin(origins = "*")
-    @DeleteMapping("/folders")
+    @DeleteMapping("/folders/{id}")
     public void deleteById(@PathVariable Integer id){
         foldersService.deleteById(id);
     }

@@ -2,20 +2,19 @@
   <div class="col-12">
     <form class="form flex-row">
       <div class="row custom-control custom-checkbox my-1 mr-sm-2">
-        <label class="col-12 col-md-8 custom-control-label border-dark  text-dark" for="customControlInline">- {{
-          folder.name
-        }}</label>
-  
-        <router-link
-          to="/"
-          class=" col-12 col-md-2 align-text-left  py-1"
+        <label
+          class="col-12 col-sm-8 custom-control-label border-dark text-dark"
+          for="customControlInline"
+          >- {{ folder.name }}</label
         >
+
+        <router-link to="/" class="col-12 col-sm-2 align-text-left py-1">
           View Items
         </router-link>
         <button
           type="submit"
           v-on:click.stop.prevent="removeFolder()"
-          class="col-12  col-md-2  align-text-left btn btn-link d-flex flex-start"
+          class="col-12 col-sm-2 align-text-left btn btn-link d-flex flex-start"
         >
           Remove
         </button>
@@ -25,6 +24,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "FolderComponent",
   props: {
@@ -33,11 +34,22 @@ export default {
   methods: {
     removeFolder() {
       this.instance
-        .delete("/api/todo/folders", { id: this.id })
+        .delete("/api/todo/folders/" + this.folder.id)
         .then()
-        .catch((error) => console.log(error));
-      this.$router.push("/items");
+        .catch((error) => console.log(error))
+        .then(() => (this.$router.go(this.$route.fullPath)))
     },
+  },
+  data() {
+    return {
+      info: null,
+      instance: axios.create({
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+        baseURL: "http://localhost:8080",
+      }),
+    };
   },
 };
 </script>

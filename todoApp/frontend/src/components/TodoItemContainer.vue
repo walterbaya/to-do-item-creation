@@ -33,8 +33,8 @@ export default {
   components: {
     TodoItem,
   },
-  beforeMount() {
-    this.getAllItems()
+  updated() {
+    this.getAllItems();
   },
   methods: {
     addTask() {
@@ -53,23 +53,15 @@ export default {
       this.instance
         .get("/api/todo")
         .then((response) => {
-          if(this.items != null){
-            this.items = this.items.concat(response.data);
-          }
-          else{
-            this.items = response.data;
-          }
-          
-        }
-        )
+          this.items = response.data;
+        })
         .catch((error) => console.log(error));
     },
   },
   data() {
     return {
       info: null,
-      items: [
-      ],
+      items: [],
       instance: axios.create({
         headers: {
           "Access-Control-Allow-Origin": "*",

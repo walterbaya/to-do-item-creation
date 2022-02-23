@@ -41,7 +41,7 @@ export default {
       this.instance
         .post("/api/todo/folders", { name: this.folderName })
         .then((response) => {
-          this.info = response.data
+          this.info = response.data;
           this.folders.push({
             id: response.data.id,
             name: response.data.name,
@@ -50,15 +50,12 @@ export default {
         })
         .catch((error) => console.log(error));
     },
+
     getAllFolders() {
       this.instance
         .get("/api/todo/folders")
         .then((response) => {
-          if (this.folders != null) {
-            this.folders = this.folders.concat(response.data);
-          } else {
-            this.folders = response.data;
-          }
+          this.folders = response.data;
         })
         .catch((error) => console.log(error));
     },
