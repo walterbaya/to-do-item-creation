@@ -1,13 +1,11 @@
 package com.example.todoapplication.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence. *;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
-import java.io.Serializable;
 import java.util.List;
 
 import static jakarta.persistence.GenerationType.AUTO;
@@ -19,6 +17,8 @@ public class Folder {
 
     private Integer id;
 
+    @jakarta.validation.constraints.NotNull(message = "name may not be null")
+    @Column(nullable = false)
     private String name;
 
     private List<Item> items;
@@ -27,9 +27,16 @@ public class Folder {
 
     }
 
-    @jakarta.persistence.Column(name = "name",nullable = false)
+    @jakarta.validation.constraints.NotNull(message = "name may not be null")
+    @Column(nullable = false)
     public String getName() {
         return name;
+    }
+
+    @Column(nullable = false)
+    @jakarta.validation.constraints.NotNull(message = "name may not be null")
+    public void setName(String name) {
+        this.name = name;
     }
 
     @jakarta.persistence.OneToMany(cascade=CascadeType.MERGE, orphanRemoval = true)

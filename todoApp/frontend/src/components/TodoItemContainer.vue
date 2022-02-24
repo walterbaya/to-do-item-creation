@@ -39,8 +39,8 @@ export default {
   },
 
 mounted() {
-    this.getAllItems();
-    this.getFolder();
+    //this.getAllItems();
+    //this.getFolder();
 },
 
   methods: {

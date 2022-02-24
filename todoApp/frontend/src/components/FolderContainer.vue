@@ -37,9 +37,7 @@ export default {
   created() {
     this.getAllFolders();
   },
-  updated() {
-    this.getAllFolders();
-  },
+
   methods: {
     addFolder() {
       this.instance
