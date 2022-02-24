@@ -2,14 +2,13 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import FolderContainer from './components/FolderContainer.vue'
 import TodoItemContainer from './components/TodoItemContainer.vue'
-import LoginComponent from './components/LoginComponent.vue'
 import TodoItemEditor from './components/TodoItemEditor.vue'
 import App from './App.vue'
 
 const routes = [{
         path: '/',
-        name: 'LoginComponent',
-        component: LoginComponent
+        name: 'start',
+        component: FolderContainer
     },
     {
         path: '/editor',
