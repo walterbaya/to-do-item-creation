@@ -22,7 +22,6 @@
       </div>
     </div>
     {{ this.folder }}
-    {{ this.items }}
   </div>
 </template>
 
@@ -38,10 +37,12 @@ export default {
   props: {
     folderId: Number,
   },
-  mounted() {
+
+mounted() {
     this.getAllItems();
     this.getFolder();
-  },
+},
+
   methods: {
     addTask() {
       //Add task
@@ -58,17 +59,18 @@ export default {
           else{
             this.items.push(response.data);
           }
-          
         })
         .catch((error) => console.log(error));
 
+      //this.getFolder();
       
       //update items in folder
       this.instance
-        .put("/api/todo/folders/" + this.folder.id, {
+        .put("/api/todo/folders/" + this.folderId, {
           items: this.items,
         })
-        .then();
+        .then((response) => this.folder = response.data);
+        console.log(this.folderId)
     },
     getAllItems() {
       this.instance
@@ -81,7 +83,8 @@ export default {
     getFolder() {
       this.instance
         .get("/api/todo/folders/" + this.folderId)
-        .then((response) => (this.folder = response.data))
+        .then((response) => {this.folder = response.data;
+        this.items = response.data.items;})
         .catch((error) => console.log(error));
     },
   },

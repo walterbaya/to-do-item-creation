@@ -27,7 +27,12 @@ public class Folder {
 
     }
 
-    @jakarta.persistence.OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
+    @jakarta.persistence.Column(name = "name",nullable = false)
+    public String getName() {
+        return name;
+    }
+
+    @jakarta.persistence.OneToMany(cascade=CascadeType.MERGE, orphanRemoval = true)
     @jakarta.persistence.JoinColumn(name="folder_id")
     @JsonManagedReference
     public List<Item> getItems() {

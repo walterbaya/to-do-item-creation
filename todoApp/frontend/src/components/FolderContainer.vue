@@ -21,6 +21,7 @@
         </form>
       </div>
     </div>
+    {{this.folders}}
   </div>
 </template>
 
@@ -36,11 +37,15 @@ export default {
   created() {
     this.getAllFolders();
   },
+  updated() {
+    this.getAllFolders();
+  },
   methods: {
     addFolder() {
       this.instance
         .post("/api/todo/folders", { name: this.folderName })
         .then((response) => {
+          console.log("se creo una tabla")
           this.info = response.data;
           this.folders.push({
             id: response.data.id,
