@@ -10,7 +10,7 @@
     </div>
     <div class="row mt-4">
       <div class="col-12">
-        <form class="form-inline d-flex mb-5" @submit.prevent="addTask">
+        <form class="form-inline d-flex mb-5" @submit.prevent="addTask" >
           <input
             type="text"
             class="form-control w-25 input-sm"
@@ -48,6 +48,7 @@ export default {
           });
         })
         .catch((error) => console.log(error));
+        this.$router.go("/");
     },
     getAllItems() {
       this.instance

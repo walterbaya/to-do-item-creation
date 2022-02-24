@@ -7,7 +7,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-12">
-        <form class="form-inline d-flex" action="items">
+        <form class="form-inline d-flex" action="">
           <input
             type="text"
             class="form-control w-25 input-sm"
@@ -17,7 +17,7 @@
           <button type="submit" v-on:click.stop.prevent="updateTask()" class="btn btn-outline-primary mx-3">
             Save
           </button>
-          <router-link to="/items" class="btn btn-outline-primary mx-3"
+          <router-link to="/" class="btn btn-outline-primary mx-3"
             >Cancel</router-link
           >
         </form>
@@ -40,7 +40,7 @@ export default {
         .put("/api/todo", { id: this.id, name: this.name })
         .then()
         .catch((error) => console.log(error));
-        this.$router.push("/items");
+        this.$router.push("/");
     },
   },
   data() {
