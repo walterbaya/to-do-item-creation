@@ -35,7 +35,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>3.0.0-M1/version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -45,7 +45,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>3.0.0-M1</version>
         </dependency>
 
         <dependency>
@@ -53,7 +53,7 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>3.0.0-M1</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -71,7 +71,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>3.0.0-M1</version>
         </dependency>
     </dependencies>
 
@@ -90,7 +90,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.0.0-SNAPSHOT</version>
+                <version>3.0.0-M1</version>
                 <configuration>
                     <excludes>
                         <exclude>
