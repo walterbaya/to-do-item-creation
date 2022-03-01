@@ -1,12 +1,10 @@
 package com.example.todoItemCreation.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-
-import static javax.persistence.GenerationType.AUTO;
 
 @Entity
 @Data
@@ -14,7 +12,7 @@ import static javax.persistence.GenerationType.AUTO;
 public class Folder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="folder_id")
     private Integer id;
 
@@ -22,8 +20,8 @@ public class Folder {
     @Column(nullable = false)
     private String name;
 
-    //@JsonManagedReference
-    @OneToMany(cascade=CascadeType.MERGE, orphanRemoval = true)
+    @JsonManagedReference
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="folder_id")
     private List<Item> items;
 

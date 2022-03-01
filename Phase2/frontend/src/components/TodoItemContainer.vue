@@ -6,11 +6,11 @@
       </div>
     </div>
     <div class="row" v-for="item in items" v-bind:key="item.id">
-      <TodoItem v-bind:item="item"></TodoItem>
+      <TodoItem v-bind:item="item[1]"></TodoItem>
     </div>
     <div class="row mt-4">
       <div class="col-12">
-        <form class="form-inline d-flex mb-5" @submit.prevent="addTask">
+        <form class="form-inline d-flex mb-5" @submit.prevent="addItem">
           <input
             type="text"
             class="form-control w-75 input-sm"
@@ -21,7 +21,6 @@
         </form>
       </div>
     </div>
-    {{ this.folder }}
   </div>
 </template>
 
@@ -38,14 +37,14 @@ export default {
     folderId: Number,
   },
 
-mounted() {
-    //this.getAllItems();
-    //this.getFolder();
-},
+  created() {
+    this.getAllItems();
+    this.getFolder();
+  },
 
   methods: {
-    addTask() {
-      //Add task
+    addItem() {
+      //Add item
       this.instance
         .post("/api/todo", {
           name: this.name,
@@ -53,45 +52,49 @@ mounted() {
           folder: this.folder,
         })
         .then((response) => {
-          if(this.items == undefined){
-            this.items = [response.data];
-          }
-          else{
-            this.items.push(response.data);
-          }
+          let element = response.data;
+          this.items.set(element.id, {
+            id: element.id,
+            name: element.name,
+            completed: element.completed,
+          });
         })
         .catch((error) => console.log(error));
 
-      //this.getFolder();
-      
       //update items in folder
       this.instance
         .put("/api/todo/folders/" + this.folderId, {
-          items: this.items,
+          id: this.folder.id,
+          name: this.folder.name,
+          items: this.items[1]
         })
-        .then((response) => this.folder = response.data);
-        console.log(this.folderId)
+        .then((response) => (console.log(response.data)));
     },
     getAllItems() {
       this.instance
         .get("/api/todo/folders/" + this.folderId)
         .then((response) => {
-          this.items = response.data.items;
+          response.data.items.forEach((element) => {
+            this.items.set(element.id, {
+              id: element.id,
+              name: element.name,
+              completed: element.completed,
+            });
+          });
         })
         .catch((error) => console.log(error));
     },
     getFolder() {
       this.instance
         .get("/api/todo/folders/" + this.folderId)
-        .then((response) => {this.folder = response.data;
-        this.items = response.data.items;})
+        .then((response) => this.folder = response.data)
         .catch((error) => console.log(error));
     },
   },
   data() {
     return {
       info: null,
-      items: [],
+      items: new Map(),
       folder: null,
       instance: axios.create({
         headers: {

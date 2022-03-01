@@ -43,7 +43,6 @@ export default {
       this.instance
         .post("/api/todo/folders", { name: this.folderName })
         .then((response) => {
-          console.log("se creo una tabla")
           this.info = response.data;
           this.folders.push({
             id: response.data.id,
@@ -58,6 +57,7 @@ export default {
       this.instance
         .get("/api/todo/folders")
         .then((response) => {
+          console.log("respuesta" + response.data)
           this.folders = response.data;
         })
         .catch((error) => console.log(error));

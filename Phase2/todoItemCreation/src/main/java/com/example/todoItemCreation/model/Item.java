@@ -1,7 +1,7 @@
 package com.example.todoItemCreation.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
@@ -10,19 +10,16 @@ import javax.persistence.*;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
     private Boolean completed;
 
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "folder_id")
-    //@JsonBackReference
-
     private Folder folder;
-
 
 }

@@ -13,7 +13,7 @@
           v-bind:to="{
             name: 'items',
             params: {
-              folderId: this.folder.id
+              folderId: this.folder.id,
             },
           }"
         >
