@@ -21,7 +21,6 @@
         </form>
       </div>
     </div>
-    {{this.folders}}
   </div>
 </template>
 
