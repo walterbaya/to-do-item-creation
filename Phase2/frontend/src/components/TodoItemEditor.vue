@@ -23,6 +23,9 @@
         </form>
       </div>
     </div>
+    {{this.item.id}}
+    {{this.item.name}}
+    {{this.item.completed}}
   </div>
 </template>
 
@@ -32,7 +35,11 @@ import axios from "axios";
 export default {
   name: "TodoItemEditor",
   props: {
-    id: Object,
+    id: Number,
+    completed: Boolean
+  },
+  created(){
+    console.log(this.id)
   },
   methods: {
     updateTask() {
@@ -45,6 +52,11 @@ export default {
   },
   data() {
     return {
+      item: {
+        id: this.id,
+        name: this.name,
+        completed: this.completed
+      },
       instance: axios.create({
         headers: {
           "Access-Control-Allow-Origin": "*",
