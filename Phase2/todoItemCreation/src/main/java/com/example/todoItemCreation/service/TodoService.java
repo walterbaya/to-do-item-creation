@@ -1,20 +1,18 @@
-package com.example.todoapplication.service;
+package com.example.todoItemCreation.service;
 
-import com.example.todoapplication.model.Item;
-import com.example.todoapplication.repository.ToDoRepository;
-import jakarta.persistence.EntityNotFoundException;
+import com.example.todoItemCreation.repository.TodoRepository;
+import com.example.todoItemCreation.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
-
 @Service
-public class ToDoService {
-
+public class TodoService {
     //Provide typical CRUD operations, Create, Delete, Read and UPDATE.
     @Autowired
-    private ToDoRepository toDoRepository;
+    private TodoRepository toDoRepository;
 
 
     public List<Item> findAll(){

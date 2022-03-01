@@ -1,7 +1,7 @@
-package com.example.todoapplication.controller;
+package com.example.todoItemCreation.controller;
 
-import com.example.todoapplication.model.Item;
-import com.example.todoapplication.service.ToDoService;
+import com.example.todoItemCreation.model.Item;
+import com.example.todoItemCreation.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,10 +9,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/todo")
-public class ToDoController {
-
+public class TodoController {
     @Autowired
-    private ToDoService toDoService;
+    private TodoService toDoService;
 
     @CrossOrigin(origins = "*")
     @GetMapping
