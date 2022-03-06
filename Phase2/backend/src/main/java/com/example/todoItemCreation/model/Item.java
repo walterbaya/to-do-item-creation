@@ -3,6 +3,7 @@ package com.example.todoItemCreation.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import javax.persistence.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Data

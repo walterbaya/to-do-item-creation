@@ -34,7 +34,9 @@ public class TodoController {
     @CrossOrigin(origins = "*")
     @PutMapping
     public Item update(@RequestBody Item item){
-        return toDoService.save(item);
+        Item gettedItem = toDoService.findById(item.getId());
+        gettedItem.setName(item.getName());
+        return toDoService.save(gettedItem);
     }
 
     @CrossOrigin(origins = "*")

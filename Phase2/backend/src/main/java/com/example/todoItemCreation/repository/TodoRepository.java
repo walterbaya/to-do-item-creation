@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TodoRepository extends CrudRepository<Item, Integer> {
-
 }
 

@@ -13,7 +13,7 @@
         }}</label>
         <router-link
           class="btn btn-outline-primary btn-sm my-1"
-          v-bind:to="{ name: 'editor', params: {id: this.item.id, completed: this.item.completed}}"
+          v-bind:to="{ name: 'editor', params: {id: this.item.id}}"
           >Edit
         </router-link>
       </div>
