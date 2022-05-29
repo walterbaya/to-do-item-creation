@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row" v-for="item in items" v-bind:key="item.id">
-      <TodoItem v-bind:item="item[1]"></TodoItem>
+      <TodoItem v-bind:item="item[1]" v-bind:folder_id="folderId"></TodoItem>
     </div>
     <div class="row mt-4">
       <div class="col-12">
@@ -34,7 +34,7 @@ export default {
     TodoItem,
   },
   props: {
-    folderId: Number,
+    folderId: String,
   },
 
   created() {

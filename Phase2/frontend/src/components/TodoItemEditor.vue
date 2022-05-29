@@ -22,7 +22,7 @@
             v-bind:to="{
               name: 'items',
               params: {
-                folderId: this.id,
+                id: this.item.id, folderId: this.folder_id
               },
             }"
             v-on:click="updateTask()"
@@ -31,7 +31,7 @@
             Save
           </router-link>
           <router-link
-            to="/items"
+            v-bind:to="{ name: 'items', params: {id: this.item.id, folderId: this.folder_id}}"
             class="btn btn-outline-primary mx-md-3 mt-3 mt-md-0 w-25"
             >Cancel</router-link
           >
@@ -48,6 +48,7 @@ export default {
   name: "TodoItemEditor",
   props: {
     id: Number,
+    folder_id: String
   },
   methods: {
     updateTask() {

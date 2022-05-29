@@ -13,11 +13,10 @@
         }}</label>
         <router-link
           class="btn btn-outline-primary btn-sm my-1"
-          v-bind:to="{ name: 'editor', params: {id: this.item.id}}"
+          v-bind:to="{ name: 'editor', params: {id: this.item.id, folder_id: this.folder_id}}"
           >Edit
         </router-link>
       </div>
-      {{this.item}}
     </form>
   </div>
 </template>
@@ -29,6 +28,7 @@ export default {
   name: "TodoItem",
   props: {
     item: Object,
+    folder_id: String
   },
   methods: {
     checkTask() {

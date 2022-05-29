@@ -22,8 +22,8 @@ public class FolderController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/folders/{id}")
-    public Folder findById(@PathVariable Integer id){
-        return foldersService.findById(id);
+    public Folder findById(@PathVariable String id){
+        return foldersService.findById(Integer.parseInt(id));
     }
     @CrossOrigin(origins = "*")
     @PostMapping("/folders")
@@ -39,7 +39,7 @@ public class FolderController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping("/folders/{id}")
-    public void deleteById(@PathVariable Integer id){
-        foldersService.deleteById(id);
+    public void deleteById(@PathVariable String id){
+        foldersService.deleteById(Integer.parseInt(id));
     }
 }
